@@ -7,4 +7,3 @@ frameworks CSS/JS modernos y conexión con una API externa.
 
 2. Desarrollador
 - Andres Feipe Rincon Naranjo - 192383
-
