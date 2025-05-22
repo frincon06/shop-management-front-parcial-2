@@ -1,11 +1,8 @@
-function getProducts(page = 1) {
+function getProducts() {
     document.getElementById('cardHeader').innerHTML = '<h4>Listado de productos</h4>';
-    fetch("https://reqres.in/api/unknown?page=" + page, {
+    fetch("https://fakestoreapi.com/products", {
         method: "GET",
-        headers: {
-            "Content-type": "application/json",
-            'x-api-key': 'reqres-free-v1'
-        }
+        headers: { 'Content-Type': 'application/json' }
     })
         .then((result) => {
             return result.json().then(
@@ -22,24 +19,24 @@ function getProducts(page = 1) {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Año</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Pantone</th>
+                            <th scope="col">Tittle</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">category</th>
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                 `;
 
-                response.body.data.forEach(product => {
+                response.body.forEach(product => {
                     listProducts += `
                         <tr>
                             <td>${product.id}</td>
-                            <td>${product.name}</td>
-                            <td>${product.year}</td>
-                            <td><span class="badge" style="background-color:${product.color}">${product.color}</span></td>
-                            <td>${product.pantone_value}</td>
+                            <td>${product.tittle}</td>
+                            <td>${product.price}</td>
+                            <td><figcaption class="blockquote-footer">${product.description}</figcaption></td>
+                            <td>${product.category}</td>
                             <td><button type="button" class="btn btn-outline-info btn-sm" onclick="showProductInfo(${product.id})">Ver</button></td>
                         </tr>
                     `;
@@ -48,12 +45,7 @@ function getProducts(page = 1) {
                 listProducts += `
                     </tbody>
                 </table>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#" onclick="getProducts(1)">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onclick="getProducts(2)">2</a></li>
-                    </ul>
-                </nav>
+                
                 `;
 
                 document.getElementById('info').innerHTML = listProducts;
@@ -64,12 +56,9 @@ function getProducts(page = 1) {
 }
 
 function showProductInfo(productId) {
-    fetch("https://reqres.in/api/unknown/" + productId, {
+    fetch('https://fakestoreapi.com/products/'+ productId, {
         method: "GET",
-        headers: {
-            "Content-type": "application/json",
-            'x-api-key': 'reqres-free-v1'
-        }
+        headers: { 'Content-Type': 'application/json' }
     })
         .then((result) => {
             return result.json().then(
@@ -100,11 +89,11 @@ function showModalProduct(product) {
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
+                            <h5 class="card-title">${product.tittle}</h5>
                             <p class="card-text"><strong>ID:</strong> ${product.id}</p>
-                            <p class="card-text"><strong>Año:</strong> ${product.year}</p>
-                            <p class="card-text"><strong>Color:</strong> <span class="badge" style="background-color:${product.color}">${product.color}</span></p>
-                            <p class="card-text"><strong>Pantone:</strong> ${product.pantone_value}</p>
+                            <p class="card-text"><strong>Precio:</strong> ${product.price}</p>
+                            <p class="card-text"><strong>Precio:</strong> ${product.category}</p>
+                            <p class="card-text"><strong>Descripcion:</strong> ${product.description}</p>
                         </div>
                     </div>
                 </div>
