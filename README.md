@@ -7,3 +7,5 @@ frameworks CSS/JS modernos y conexión con una API externa.
 
 2. Desarrollador
 - Andres Feipe Rincon Naranjo - 192383
+
+![Image](https://github.com/user-attachments/assets/ac5bc103-178a-41c6-b6b6-684278bdf3e1)
